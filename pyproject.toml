@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "blueprint-python"
+version = "0.1.0"
+description = "GitHub template for Python package blueprint"
+authors = ["Iaroslav Russkykh <me@elruso.im>"]
+license = "MIT"
+repository = "https://github.com/cachuperia/blueprint-python"
+documentation = "https://github.com/cachuperia/blueprint-python"
+# https://pypi.org/classifiers/
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Typing :: Typed",
+    # PyPI will always reject packages with classifiers beginning with "Private ::"
+    "Private :: Do Not Upload",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10, <4.0"
+
+loguru = "*"
+typer = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-dotenv = "*"
+
+mypy = "*"  # check https://github.com/python/typeshed/tree/master/stubs for stubs
+
+detect-secrets = "~1.2.0"
+
+[tool.poetry.extras]
+
+[tool.poetry.scripts]
+blueprint-python = "blueprint_python:cli.cli"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+force_sort_within_sections = true
+order_by_type = false
+line_length = 100
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = [
+    "pyproject.toml:version"
+]
+version_pattern = [
+    "Makefile:^VERSION := {version}"
+]
+upload_to_pypi = false
+upload_to_release = false
+commit_subject = "chore(release): {version} [skip actions]"

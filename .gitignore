@@ -1,0 +1,17 @@
+# IDE
+# NOTHING HERE. PLEASE ADD YOUR IDE/EDITOR FILES TO YOUR .gitignore_global
+# https://docs.github.com/en/github/using-git/ignoring-files#configuring-ignored-files-for-all-repositories-on-your-computer
+
+# Environment variables
+.env
+.envrc
+
+# Python files
+__pycache__/
+*.egg-info/
+.coverage
+.venv
+.pytest_cache
+.mypy_cache
+dist/
+pytest-coverage.txt
