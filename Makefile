@@ -5,9 +5,9 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-VERSION := 0.1.0
+VERSION := 0.0.0
 ROOT := $(shell pwd)
-PACKAGE_PATH := ${ROOT}/src/blueprint_python
+PACKAGE_PATH := ${ROOT}/src/freenove_esp32
 PYTHON_VERSION := $(shell cat .python-version)
 
 .DEFAULT_GOAL := help
@@ -47,7 +47,7 @@ test-integration: ## Run integration tests
 	PYTHONPATH=${PACKAGE_PATH} poetry run pytest --runintegration
 
 ##@ Miscellaneous
-.PHONY: secrets-baseline-create secrets-baseline-audit secrets-update replace-me
+.PHONY: secrets-baseline-create secrets-baseline-audit secrets-update
 
 secrets-baseline-create:  ## Create/update .secrets.baseline file
 	poetry run detect-secrets scan --baseline .secrets.baseline
@@ -63,9 +63,6 @@ refresh-lock:  ## Refresh the poetry.lock file without packages updates
 
 clean:  ## Clean local environment
 	rm -rf .coverage .mypy_cache .pytest_cache .venv poetry.lock
-
-replace-me:  ## Highlight not modified parts of blueprint
-	git grep -Ei 'blueprint*|replace*|${VERSION}'
 
 ##@ Helpers
 .PHONY: help
