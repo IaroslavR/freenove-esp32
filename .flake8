@@ -8,5 +8,5 @@ max-complexity = 10
 max-line-length = 100
 per-file-ignores =
   tests/*:ANN001,ANN201,B950,D103,D100,DAR
-  src/blueprint_python/cli.py:DAR
+  src/freenove_esp32/cli.py:DAR
 select =ANN,B,B9,C,D,E,F,I,N8,PT,W

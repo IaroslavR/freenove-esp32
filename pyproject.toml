@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "blueprint-python"
-version = "0.1.0"
-description = "GitHub template for Python package blueprint"
+name = "freenove-esp32"
+version = "0.0.0"
+description = "Freenove Ultimate Starter Kit for ESP32 scripts"
 authors = ["Iaroslav Russkykh <me@elruso.im>"]
 license = "MIT"
-repository = "https://github.com/cachuperia/blueprint-python"
-documentation = "https://github.com/cachuperia/blueprint-python"
+repository = "https://github.com/cachuperia/freenove-esp32"
+documentation = "https://github.com/cachuperia/freenove-esp32"
 # https://pypi.org/classifiers/
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -34,16 +34,16 @@ pytest-dotenv = "*"
 
 mypy = "*"  # check https://github.com/python/typeshed/tree/master/stubs for stubs
 
-detect-secrets = "~1.2.0"
+detect-secrets = "~1.4.0"
 
 [tool.poetry.extras]
 
 [tool.poetry.scripts]
-blueprint-python = "blueprint_python:cli.cli"
+freenove-esp32 = "freenove_esp32:cli.cli"
 
 [tool.black]
 line-length = 100
-target-version = ['py310']
+target-version = ['py311']
 
 [tool.isort]
 profile = "black"
