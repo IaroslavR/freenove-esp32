@@ -21,21 +21,46 @@ init-env: clean  ## Initialize local environment
 	poetry env use ${PYTHON_VERSION}
 	cat .test.env > .env
 	echo "dotenv" > .envrc
+	cat src/cfg_template.py > src/freenove_esp32/chip/helpers/cfg.py
+	@echo "Path to configuration file - src/freenove_esp32/chip/cfg.py"
 
-bootstrap:  ## Install/update required tools(dev tools included)
+bootstrap:  ## Install/update locally required modules and tools
 	poetry install
 	git add poetry.lock
 
-init: init-repo init-env bootstrap  ## All init steps at once
+init: init-repo init-env bootstrap  ## All repo init steps at once
+
+##@ ESP32
+.PHONY: connect download erase write-python esp-init
+
+download:  ## Download MicroPython
+	mkdir -p "downloads"
+	wget -c ${MICROPYTHON_BINARY} -O downloads/${MICROPYTHON_VERSION}.bin
+
+erase:  ## Erase flash
+	esptool.py --chip esp32 --port "${ESP32_PORT}" erase_flash
+
+find-ports:  ## Search for serial ports
+	lsusb | grep -w USB-Serial
+	poetry run python -m serial.tools.list_ports -v
+
+write-python:  ## Write MicroPython to the chip
+	esptool.py --chip esp32 --port "${ESP32_PORT}" --baud 460800 write_flash -z 0x1000 downloads/${MICROPYTHON_VERSION}.bin
+	sleep 5  # wait for hard reset
+
+write-code:  ## Write src/freenove_esp32/chip content to the chip
+	cd src/freenove_esp32/chip && poetry run mpremote cp -r . :
+
+get-logs:  ## Copy logfile to the local fs
+	mpremote cp :logging.log ./logging.log
+
+esp32-init: download erase write-python write-code  ## All init steps for ESP32 at once
 
 ##@ Checks
 .PHONY: check
 
 check:  ## Run pre-commit against all files
 	pre-commit run --all-files
-
-mypy:  ## Run type checker
-	poetry run mypy
 
 ##@ Tests
 .PHONY: test

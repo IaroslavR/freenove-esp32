@@ -1,7 +1,7 @@
 [flake8]
 application-import-names = src
 docstring-convention = google
-ignore = ANN002,ANN003,ANN101,E203,E501,W503
+ignore = ANN002,ANN003,ANN101,E203,E501,W503,D107
 import-order-style = google
 max-cognitive-complexity = 15
 max-complexity = 10
@@ -9,4 +9,4 @@ max-line-length = 100
 per-file-ignores =
   tests/*:ANN001,ANN201,B950,D103,D100,DAR
   src/freenove_esp32/cli.py:DAR
-select =ANN,B,B9,C,D,E,F,I,N8,PT,W
+select =ANN,B,B9,C,D,E,F,N8,PT,W
