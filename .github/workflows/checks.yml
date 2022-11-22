@@ -10,18 +10,18 @@ jobs:
   commitlint:
     uses: cachuperia/github-reusable-workflows/.github/workflows/commitlint.yml@v1.0.2
 
-  pytest:
-    uses: cachuperia/github-reusable-workflows/.github/workflows/pytest.yml@v1.0.2
-    with:
-      python-version: "3.11"
-      run-integration: true
+#  pytest:
+#    uses: cachuperia/github-reusable-workflows/.github/workflows/pytest.yml@v1.0.2
+#    with:
+#      python-version: "3.11"
+#      run-integration: true
 
   approve:
     if: ${{ success() }}
     needs:
       - pre-commit
       - commitlint
-      - pytest
+#      - pytest
     uses: cachuperia/github-reusable-workflows/.github/workflows/approve.yml@v1.0.2
     secrets:
       token: ${{ secrets.AUTOMATION_GITHUB_TOKEN }}
