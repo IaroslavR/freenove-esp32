@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "freenove-esp32"
-version = "0.0.0"
+version = "0.1.0"
 description = "Freenove Ultimate Starter Kit for ESP32 scripts"
 authors = ["Iaroslav Russkykh <me@elruso.im>"]
 license = "MIT"

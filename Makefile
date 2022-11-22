@@ -5,7 +5,7 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-VERSION := 0.0.0
+VERSION := 0.1.0
 ROOT := $(shell pwd)
 PACKAGE_PATH := ${ROOT}/src/freenove_esp32
 PYTHON_VERSION := $(shell cat .python-version)
